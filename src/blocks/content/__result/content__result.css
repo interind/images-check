@@ -1,0 +1,10 @@
+.content__result {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 70px);
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  border-top: 1px solid #808080;
+}

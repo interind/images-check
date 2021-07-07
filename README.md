@@ -1,24 +1,7 @@
-# images-check
+Проект проверки изображений с последующим выводом изображения.
 
-## Project setup
-```
-npm install
-```
+Запуск:
 
-### Compiles and hot-reloads for development
-```
 npm run serve
-```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+ссылка:  https://interind.github.io/images-check/index.html

@@ -1,11 +1,13 @@
 {
   "name": "images-check",
   "version": "0.1.0",
-  "private": true,
+  "homepage": "https://interind.github.io/images-check/",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -19,7 +21,8 @@
     "@vue/eslint-config-airbnb": "^5.0.2",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0"
+    "eslint-plugin-vue": "^7.0.0",
+    "gh-pages": "^3.2.3"
   },
   "eslintConfig": {
     "root": true,

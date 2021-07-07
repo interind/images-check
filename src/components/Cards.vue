@@ -13,7 +13,7 @@
   </template>
   <template v-else>
     <div class="cards">
-      <span class="cards__title">Сдесь будут показаны ваши файлы</span>
+      <span class="cards__title">Здесь будут отображаться ваши загруженные файлы</span>
     </div>
   </template>
   <template v-if="popupStatus">

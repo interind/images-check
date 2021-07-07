@@ -6,6 +6,7 @@
         @drop="onDragDrop"
         @dragover="onDragOver"
         @change="isStatusInput"
+        @click="onClickInput"
         type="file"
         class="content__input"
         id="input-image"
@@ -61,6 +62,9 @@ export default {
     msg: String,
   },
   methods: {
+    onClickInput(evt) {
+      evt.preventDefault();
+    },
     isStatusInput(evt) {
       if (evt.target.value) {
         this.status = true;

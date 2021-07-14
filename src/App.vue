@@ -1,5 +1,5 @@
 <template>
-  <img class="logo" alt="Vue logo" src="./assets/logo.png">
+  <img class="logo" alt="Vue logo" src="./assets/images/logo/logo.png">
   <ContentBlock msg="File uploader" />
 </template>
 

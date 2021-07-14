@@ -1,11 +1,12 @@
 .content__check {
   display: flex;
   position: relative;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 300px;
-  border: 1px solid #808080;
   background-color: #000;
   overflow: hidden;
+  border-top: 1px solid #808080;
 }

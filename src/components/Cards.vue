@@ -1,14 +1,15 @@
 <template>
   <template v-if="srcImages.length > 0">
     <div class="cards">
-      <img
-        v-for="srcImage in srcImages"
-        class="card"
-        :alt="srcImage.name"
-        :src="srcImage.link"
-        :key="srcImage.name"
-        @mousedown="togglePopup"
-      >
+      <div class="card" v-for="srcImage in srcImages" :key="srcImage.name">
+        <img
+          class="card__image"
+          :alt="srcImage.name"
+          :src="srcImage.link"
+          @mousedown="togglePopup"
+        >
+        <button @mousedown="cardRemove" class="button button_type_close" type="button"></button>
+      </div>
     </div>
   </template>
   <template v-else>
@@ -33,12 +34,16 @@ export default {
     popupStatus: false,
     src: '',
     title: '',
+    message: '',
   }),
   methods: {
     togglePopup(evt) {
       this.popupStatus = !this.popupStatus;
       this.src = evt.target.src;
       this.title = evt.target.alt;
+    },
+    cardRemove(evt) {
+      evt.target.parentNode.remove();
     },
   },
 };

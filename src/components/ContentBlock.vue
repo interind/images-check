@@ -1,14 +1,13 @@
 <template>
   <div class="content">
     <h1 class="content__title">{{ msg }}</h1>
-    <div :class="classActive">
+    <form @submit="onAddImages" class="content__check">
       <input
         @drop="onDragDrop"
         @dragover="onDragOver"
         @change="isStatusInput"
-        @click="onClickInput"
         type="file"
-        class="content__input"
+        :class="classActive"
         id="input-image"
         multiple
         accept="image/*"
@@ -19,26 +18,26 @@
       <template v-else>
         <span class="content__mark">{{ messageStatus }}</span>
       </template>
-    </div>
-    <template v-if="status">
-      <button
-        class="button button_type_check"
-        @click="onAddImages"
-        type="button"
-      >
-        Отправить
-      </button>
-    </template>
-    <template v-else>
-      <button
-        class="button button_type_check"
-        @click="onAddImages"
-        type="button"
-        disabled
-      >
-        Отправить
-      </button>
-    </template>
+      <div class="content__submit">
+        <template v-if="status">
+          <button
+            class="button button_type_check"
+            type="submit"
+          >
+            Отправить
+          </button>
+        </template>
+        <template v-else>
+          <button
+            class="button button_type_check"
+            type="submit"
+            disabled
+          >
+            Отправить
+          </button>
+        </template>
+      </div>
+    </form>
     <Cards :srcImages= "srcImages" />
   </div>
 </template>
@@ -53,7 +52,7 @@ export default {
   data: () => ({
     srcImages: [],
     status: false,
-    classActive: 'content__check',
+    classActive: 'content__input',
     messageStatus: 'Перенесите сюда файл',
   }),
   filesNames: [],
@@ -62,25 +61,24 @@ export default {
     msg: String,
   },
   methods: {
-    onClickInput(evt) {
-      evt.preventDefault();
-    },
     isStatusInput(evt) {
       if (evt.target.value) {
         this.status = true;
         this.messageStatus = 'Файлы получены';
-        this.classActive = 'content__check content__check_active';
+        this.classActive = 'content__input content__input_active';
       } else {
         this.status = false;
-        this.classActive = 'content__check';
+        this.classActive = 'content__input';
       }
     },
-    onAddImages() {
+    onAddImages(evt) {
+      evt.preventDefault();
       if (this.status) {
-        this.readerImages(this.fileLoader);
+        this.readerImages(evt.target[0].files);
         this.status = false;
         this.messageStatus = 'Перенесите сюда файл';
-        this.classActive = 'content__check';
+        this.classActive = 'content__input';
+        evt.target.reset();
       }
     },
     readerImages(files) {
@@ -101,7 +99,7 @@ export default {
       const arrayCorrect = [];
       arrayFiles.forEach((el) => {
         if (this.filesNames.length > 0 && this.filesNames.find((e) => e.includes(el.name))) {
-          this.classActive = 'content__check content__check_error';
+          this.classActive = 'content__input content__input_error';
           this.messageStatus = 'Файлы уже были добавлены';
         } else {
           this.filesNames.push(el.name);

@@ -1,6 +1,8 @@
 <template>
-  <img class="logo" alt="Vue logo" src="./assets/images/logo/logo.png">
-  <ContentBlock msg="File uploader" />
+  <div>
+    <img class="logo" alt="Vue logo" src="./assets/images/logo/logo.png">
+    <ContentBlock msg="File uploader" />
+  </div>
 </template>
 
 <script>
@@ -8,9 +10,7 @@ import ContentBlock from './components/ContentBlock.vue';
 
 export default {
   name: 'App',
-  components: {
-    ContentBlock,
-  },
+  components: { ContentBlock },
 };
 </script>
 

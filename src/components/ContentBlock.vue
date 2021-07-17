@@ -49,6 +49,9 @@ import Cards from './Cards.vue';
 export default {
   components: { Cards },
   name: 'ContentBlock',
+  props: {
+    msg: String,
+  },
   data: () => ({
     srcImages: [],
     status: false,
@@ -57,9 +60,6 @@ export default {
   }),
   filesNames: [],
   fileLoader: [],
-  props: {
-    msg: String,
-  },
   methods: {
     isStatusInput(evt) {
       if (evt.target.value) {

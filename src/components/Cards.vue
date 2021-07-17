@@ -1,27 +1,39 @@
 <template>
-  <template v-if="srcImages.length > 0">
-    <div class="cards">
-      <div class="card" v-for="srcImage in srcImages" :key="srcImage.name">
-        <img
-          class="card__image"
-          :alt="srcImage.name"
-          :src="srcImage.link"
-          @mousedown="togglePopup"
+  <div class="cards">
+    <template v-if="srcImages.length > 0">
+        <div
+          v-for="srcImage in srcImages"
+          :key="srcImage.name"
+          class="card"
         >
-        <button @mousedown="cardRemove" class="button button_type_close" type="button"></button>
-      </div>
+          <img
+            class="card__image"
+            :alt="srcImage.name"
+            :src="srcImage.link"
+            @mousedown="togglePopup"
+          >
+          <button
+            class="button button_type_close"
+            type="button"
+            @mousedown="cardRemove"
+          />
+        </div>
+    </template>
+    <template v-else>
+        <span class="cards__title">Здесь будут отображаться ваши загруженные файлы</span>
+    </template>
+    <div
+      v-show="popupStatus"
+      class="popup popup_opened"
+      @mousedown="togglePopup"
+    >
+      <img
+        class="popup__pic"
+        :src="src"
+        alt="title"
+      >
     </div>
-  </template>
-  <template v-else>
-    <div class="cards">
-      <span class="cards__title">Здесь будут отображаться ваши загруженные файлы</span>
-    </div>
-  </template>
-  <template v-if="popupStatus">
-    <div class="popup popup_opened" @mousedown="togglePopup">
-      <img class="popup__pic" :src="src" alt="title">
-    </div>
-  </template>
+  </div>
 </template>
 
 <script>

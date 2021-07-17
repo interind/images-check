@@ -62,13 +62,15 @@ export default {
   fileLoader: [],
   methods: {
     isStatusInput(evt) {
-      if (evt.target.value) {
+      const status = this.srcImages.find((src) => src.name === evt.target.files[0].name);
+      if (!status) {
         this.status = true;
         this.messageStatus = 'Файлы получены';
         this.classActive = 'content__input content__input_active';
       } else {
         this.status = false;
-        this.classActive = 'content__input';
+        this.messageStatus = 'Файлы уже были добавлены';
+        this.classActive = 'content__input content__input_error';
       }
     },
     onAddImages(evt) {

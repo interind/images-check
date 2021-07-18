@@ -53,7 +53,7 @@ export default {
     msg: String,
   },
   data: () => ({
-    srcImages: [],
+    srcImages: JSON.parse(localStorage.getItem('images')) || [],
     status: false,
     classActive: 'content__input',
     messageStatus: 'Перенесите сюда файл',
@@ -61,9 +61,19 @@ export default {
   filesNames: [],
   fileLoader: [],
   methods: {
+    findItem(arr, name) {
+      const item = Array.from(arr).find((i) => i.name === name);
+      return item;
+    },
     isStatusInput(evt) {
-      const status = this.srcImages.find((src) => src.name === evt.target.files[0].name);
+      let arrCorrect = JSON.parse(localStorage.getItem('images')) || [];
+      let status = null;
+      arrCorrect.forEach((src) => {
+        status = this.findItem(evt.target.files, src.name);
+      });
       if (!status) {
+        arrCorrect = this.srcImages;
+        localStorage.setItem('images', JSON.stringify(arrCorrect));
         this.status = true;
         this.messageStatus = 'Файлы получены';
         this.classActive = 'content__input content__input_active';

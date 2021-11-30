@@ -1,11 +1,11 @@
 <template>
   <div class="content">
     <h1 class="content__title">{{ msg }}</h1>
-    <form @submit="onAddImages" class="content__check">
+    <form @submit.prevent="onAddImages" class="content__check">
       <input
         @drop="onDragDrop"
         @dragover="onDragOver"
-        @change="isStatusInput"
+        @change.prevent="isStatusInput"
         type="file"
         :class="classActive"
         id="input-image"
@@ -84,7 +84,6 @@ export default {
       }
     },
     onAddImages(evt) {
-      evt.preventDefault();
       if (this.status) {
         this.readerImages(evt.target[0].files);
         this.status = false;
